@@ -116,9 +116,9 @@ body{
   gap: 24px;
 }
 
-.tutorialspoint-logo{
-  width: 226px;
-  height: 42px;
+.header-link{
+  width: 11vw;
+  height: 15vh;
 }
 
 .categories-button{
@@ -135,3 +135,30 @@ body{
   height: 14px;
   flex-shrink: 0;
 }
+
+.header-search-input-wrapper{
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 25vw;
+  border: 1px solid #e3e3e3;
+  border-radius: 5px;
+}
+
+.header-search-input-icon{
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  left: 12px;
+  color: #808080;
+}
+
+.header-search-input{
+  width: 100%;
+  padding: 10px 16px 10px 40px;
+  border: none;
+  border-radius: inherit;
+  background-color: #fafafa;
+  color: #808080;
+}
+
