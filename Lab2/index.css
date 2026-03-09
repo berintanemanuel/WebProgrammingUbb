@@ -24,7 +24,7 @@ body{
 }
 
 .topbar-link{
-  color: aliceblue;
+  color: white;
   text-decoration: none;
   display: flex;
   gap: 6px;
@@ -72,7 +72,7 @@ body{
 
 .theme-button{
   background-color: #303030;
-  color: aliceblue;
+  color: white;
   margin-right: 10px;
 }
 
