@@ -197,8 +197,10 @@ body{
 }
 
 .login-button{
-  background-color: green;
+  background-color: #40A944;
   font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
   padding: 10px 24px;
   border-radius: 5px;
   color: white;
