@@ -4,13 +4,13 @@ body{
 }
 
 .topbar {
-  background: #00a651;
-  background: #000000;
+  background: green;
+  background: black;
   padding: 8px 20px;
 }
 
 .topbar-inner {
-  max-width: 1413px;
+  max-width: 95%;
   margin: 0 auto;
   display: flex;
   align-items: center;
@@ -30,4 +30,9 @@ body{
   gap: 6px;
   font-size: 13px;
   align-items: center;
+}
+
+.topbar-svg{
+  width: 16px;
+  height: 16px;
 }
