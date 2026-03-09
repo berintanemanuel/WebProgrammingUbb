@@ -99,7 +99,7 @@ body{
   padding: 12px 20px;
   position: sticky;
   top: 0;
-  border-bottom: 1px solid #e3e3e3
+  border-bottom: 1px solid #e3e3e3;
 }
 
 .header-inner{
@@ -109,6 +109,7 @@ body{
   margin: 0 auto;
   width: 95%;
   max-width: 1413px;
+  position: relative;
 }
 
 .header-inner-left{
@@ -119,7 +120,7 @@ body{
 
 .header-link{
   width: 11vw;
-  height: 15vh;
+  height: 30px;
 }
 
 .categories-button{
@@ -129,6 +130,7 @@ body{
   background: none;
   border: none;
   font-size: 14px;
+  position: static;
 }
 
 .categories-button-squares-svg, .categories-button-arrow-svg{
