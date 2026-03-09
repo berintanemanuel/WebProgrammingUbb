@@ -76,7 +76,7 @@ body{
   margin-right: 10px;
 }
 
-.facebook-link{
+.facebook-link, .linkedin-link{
   background-color: #1877f2;
   color: white;
 }
@@ -89,4 +89,8 @@ body{
 .youtube-link{
   background-color: red;
   color: white;
+}
+
+.instagram-link{
+  background: linear-gradient(to bottom left,     #833ab4,#fd1d1d,#fcb045);
 }
