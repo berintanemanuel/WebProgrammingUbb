@@ -38,8 +38,8 @@ body{
 }
 
 .topbar-right-svg{
-  width: 75%;
-  height: 75%;
+  width: 60%;
+  height: 60%;
 }
 
 .topbar-right{
@@ -59,16 +59,15 @@ body{
 }
 
 .topbar-right-link{
-  color: aliceblue;
+  color: white;
   text-decoration: none;
   display: flex;
-  gap: 6px;
   font-size: 13px;
   align-items: center;
   justify-content: center;
-  width: 25px;
-  height: 25px;
-  border-radius: 15%;
+  width: 28px;
+  height: 28px;
+  border-radius: 4px;
 }
 
 .theme-button{
@@ -84,5 +83,10 @@ body{
 
 .twitter-link{
   background-color: black;
+  color: white;
+}
+
+.youtube-link{
+  background-color: red;
   color: white;
 }
