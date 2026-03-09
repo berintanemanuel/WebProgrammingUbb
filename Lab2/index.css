@@ -107,7 +107,8 @@ body{
   justify-content: space-between;
   align-items: center;
   margin: 0 auto;
-  max-width: 95%;
+  width: 95%;
+  max-width: 1413px;
 }
 
 .header-inner-left{
@@ -160,5 +161,46 @@ body{
   border-radius: inherit;
   background-color: #fafafa;
   color: #808080;
+}
+
+.header-inner-right{
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.header-right-link{
+  text-decoration: none;
+  color: black;
+  font-size: 14px;
+}
+
+.header-right-svg{
+  width: 14px;
+  height: 14px;
+}
+
+.header-right-svg-tutorials{
+  margin-right: 6px;
+  flex-shrink: 0;
+  color: black
+}
+
+.header-right-svg-courses{
+  margin-right: 6px;
+  color: red;
+}
+
+.header-right-svg-jobs{
+  margin-right: 6px;
+  color: black;
+}
+
+.login-button{
+  background-color: green;
+  font-size: 14px;
+  padding: 10px 24px;
+  border-radius: 5px;
+  color: white;
 }
 
