@@ -94,3 +94,13 @@ body{
 .instagram-link{
   background: linear-gradient(to bottom left,     #833ab4,#fd1d1d,#fcb045);
 }
+
+.page-header{
+  padding: 12px 20px;
+}
+
+.header-inner{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
