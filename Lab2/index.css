@@ -97,10 +97,41 @@ body{
 
 .page-header{
   padding: 12px 20px;
+  position: sticky;
+  top: 0;
+  border-bottom: 1px solid #e3e3e3
 }
 
 .header-inner{
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin: 0 auto;
+  max-width: 95%;
+}
+
+.header-inner-left{
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.tutorialspoint-logo{
+  width: 226px;
+  height: 42px;
+}
+
+.categories-button{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: none;
+  border: none;
+  font-size: 14px;
+}
+
+.categories-button-squares-svg, .categories-button-arrow-svg{
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
 }
