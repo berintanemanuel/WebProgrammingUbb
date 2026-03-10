@@ -1,6 +1,7 @@
 body{
   font-family:Arial, Helvetica, sans-serif;
-  margin: 0
+  margin: 0;
+  background: #f6f6f6;
 }
 
 .topbar {
@@ -210,11 +211,40 @@ body{
 }
 
 .main-content{
-  padding: 0px 20px 20px 20px;
+  padding: 20px;
   background-color: #f6f6f6;
+}
+
+.image-main-content{
+  padding-top: 0px;
 }
 
 .content-container{
   max-width: 1413px;
   margin: 0 auto;
 }
+
+.topic-section-title-container > *{
+  margin-top: 0px;
+  margin-bottom: 5px;
+}
+
+.topic-section-title{
+  font-size: 26px;
+}
+
+.topic-section-title-highlighted{
+  color: #40A944;
+  font-style: bold;
+}
+
+.topic-section-practice{
+  color: #808080;
+  font-size: 14px;
+  font-weight: 100;
+}
+
+/*
+TODO:
+Add hovering effects for the header elements on the right side (and check if others need it too).
+*/
