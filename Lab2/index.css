@@ -126,7 +126,6 @@ body{
   margin: 0 auto;
   width: 95%;
   max-width: 1413px;
-  position: relative;
 }
 
 .header-inner-left{
@@ -148,8 +147,39 @@ body{
   border: none;
   font-size: 14px;
   letter-spacing: 1.5px;
-  position: static;
   cursor: pointer;
+  overflow: hidden;
+  position: relative;
+}
+
+.button-hidden{
+  display: none;
+  min-height: 200px;
+  min-width: 100px;
+  width: 150px;
+  position: absolute;
+  top: 100%;
+  background-color: #fafafa;
+  text-decoration: none;
+  color: black;
+}
+
+.button-wrapper:hover .button-hidden{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.button-hidden a{
+  display: block;
+  background-color: #f6f6f6;
+  border-bottom: 1px black;
+  text-decoration: none;
+  color: black;
+}
+
+.categories-button:hover{
+  overflow: visible;
 }
 
 .categories-button-squares-svg, .categories-button-arrow-svg{
@@ -305,14 +335,12 @@ body{
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  position: relative;
   background-color: #c8e6c9; /* light green background */
   border-radius: 12px;
   width: 100%;
   height: 100%;
   padding: 22px;
   min-height: 155px;
-  overflow: hidden;
   text-decoration: none;
   transition-duration: 0.2s;
 }
@@ -338,7 +366,6 @@ body{
   font-size: 22px;
   font-weight: 600;
   color: #fafafa;
-  position: relative;
   margin: 0px;
   margin-bottom: 6px;
 }
@@ -348,7 +375,6 @@ body{
 }
 
 .topic-banner p {
-  position: relative;
   font-size: 13px;
   color: #fafafa;
   margin: 0px;
@@ -372,17 +398,13 @@ body{
 }
 
 .topic-banner-button {
-  display: flex;
-  align-items: center;
   background-color: white;
   color: white;
   font-size: 13px;
   font-weight: 600;
   padding: 10px 20px;
   border-radius: 25px;
-  box-sizing: border-box;
   z-index: 100;
-  position: relative;
 }
 
 .topic-banner-button-dsa{
