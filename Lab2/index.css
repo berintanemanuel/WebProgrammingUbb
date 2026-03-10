@@ -84,6 +84,7 @@ body{
   color: white;
   margin-right: 10px;
   transition-duration: 0.3s;
+  cursor: pointer;
 }
 
 .theme-button:hover{
@@ -148,6 +149,7 @@ body{
   font-size: 14px;
   letter-spacing: 1.5px;
   position: static;
+  cursor: pointer;
 }
 
 .categories-button-squares-svg, .categories-button-arrow-svg{
@@ -255,7 +257,7 @@ body{
 
 .topic-section-title-container > *{
   margin-top: 0px;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
 }
 
 .topic-section-title{
@@ -460,9 +462,16 @@ body{
   left: auto;
   opacity: 1;
   right: -20px;
-  transition-duration: 0.3ms;
+  transition-duration: 0.2s;
+  cursor: pointer;
 }
 
 .topic-slider-nav-button-right:hover{
   background-color: #4dc758;
+  color: white
+}
+
+.topic-slider-nav-button-svg{
+  width: 20px;
+  height: auto;
 }
