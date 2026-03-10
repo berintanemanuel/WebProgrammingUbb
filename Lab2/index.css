@@ -116,7 +116,7 @@ body{
   position: sticky;
   top: 0;
   border-bottom: 1px solid #e3e3e3;
-  background-color: inherit;
+  background-color: #fff;
 }
 
 .header-inner{
@@ -164,7 +164,7 @@ body{
   align-items: center;
   width: 425px;
   border: 1px solid #e3e3e3;
-  border-radius: 5px;
+  border-radius: 10px;
 }
 
 .header-search-input-icon{
@@ -182,6 +182,8 @@ body{
   border-radius: inherit;
   background-color: #fafafa;
   color: #808080;
+  font-size: 14px;
+  letter-spacing: 1px;
 }
 
 .header-search-input:focus{
