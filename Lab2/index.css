@@ -248,7 +248,14 @@ body{
   position: relative;
   display: flex;
   align-items: center;
+}
+
+.topic-slider-elements-container{
+  position: relative;
+  display: flex;
+  align-items: center;
   overflow: hidden;
+  z-index: 1;
 }
 
 .topic-slider-container-element{
@@ -406,6 +413,29 @@ body{
   color: #1877f2;
   background-color: #ecf3fd;
   font-weight: 600;
+}
+
+.topic-slider-nav-button{
+  position: absolute;
+  left: -20px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  background-color: #fafafa;
+  opacity: 0.35;
+  z-index: 10;
+}
+
+.topic-slider-nav-button-right{
+  left: auto;
+  opacity: 1;
+  right: -20px;
+  transition-duration: 0.3ms;
+}
+
+.topic-slider-nav-button-right:hover{
+  background-color: #4dc758;
 }
 
 /*
