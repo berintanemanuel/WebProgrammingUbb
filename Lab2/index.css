@@ -168,6 +168,11 @@ body{
   color: #808080;
 }
 
+.header-search-input:focus{
+  outline: none;
+  border: 1px solid #4dc758;
+}
+
 .header-inner-right{
   display: flex;
   align-items: center;
