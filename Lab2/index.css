@@ -83,6 +83,12 @@ body{
   background-color: #303030;
   color: white;
   margin-right: 10px;
+  transition-duration: 0.3s;
+}
+
+.theme-button:hover{
+  transform: scale(125%);
+  background-color: #707070;
 }
 
 .facebook-link, .linkedin-link{
