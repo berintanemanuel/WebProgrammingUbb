@@ -178,6 +178,11 @@ body{
   text-decoration: none;
   color: black;
   font-size: 14px;
+  transition-duration: 0.1s;
+}
+
+.header-right-link:hover{
+  color: #4dc758;
 }
 
 .header-right-svg{
@@ -188,7 +193,6 @@ body{
 .header-right-svg-tutorials{
   margin-right: 6px;
   flex-shrink: 0;
-  color: black
 }
 
 .header-right-svg-courses{
@@ -198,8 +202,8 @@ body{
 
 .header-right-svg-jobs{
   margin-right: 6px;
-  color: black;
 }
+
 
 .login-button{
   background-color: #40A944;
@@ -209,6 +213,11 @@ body{
   padding: 10px 24px;
   border-radius: 5px;
   color: white;
+  transition-duration: 0.1s;
+}
+
+.login-button:hover{
+  background-color: #2e7d32;
 }
 
 .main-content{
@@ -438,8 +447,3 @@ body{
 .topic-slider-nav-button-right:hover{
   background-color: #4dc758;
 }
-
-/*
-TODO:
-Add hovering effects for the header elements on the right side (and check if others need it too).
-*/
