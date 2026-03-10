@@ -75,6 +75,10 @@ body{
   border-radius: 4px;
 }
 
+.topbar-right-link:hover{
+  opacity: 0.8;
+}
+
 .theme-button{
   background-color: #303030;
   color: white;
