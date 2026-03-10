@@ -248,7 +248,7 @@ body{
   position: relative;
   display: flex;
   align-items: center;
-  margin-right: 12px;
+  overflow: hidden;
 }
 
 .topic-slider-container-element{
@@ -257,6 +257,7 @@ body{
   display: flex;
   flex-shrink: 0;
   position: relative;
+  margin-right: 16px;
 }
 
 .topic-banner {
@@ -295,20 +296,28 @@ body{
 .topic-banner h3 {
   font-size: 22px;
   font-weight: 600;
-  color: #1b5e20;
+  color: #fafafa;
   position: relative;
   margin: 0px;
   margin-bottom: 6px;
 }
 
+.topic-banner-dsa-learning h3{
+  color: #1b5e20;
+}
+
 .topic-banner p {
   position: relative;
   font-size: 13px;
-  color: #2e7d32;
+  color: #fafafa;
   margin: 0px;
   margin-bottom: 16px;
   line-height: 1.4; 
   max-width: 170px;
+}
+
+.topic-banner-dsa-learning p{
+  color: #2e7d32;
 }
 
 .topic-banner .illus {
@@ -324,7 +333,7 @@ body{
 .topic-banner-button {
   display: flex;
   align-items: center;
-  background-color: #1b5e20;
+  background-color: white;
   color: white;
   font-size: 13px;
   font-weight: 600;
@@ -333,6 +342,70 @@ body{
   box-sizing: border-box;
   z-index: 100;
   position: relative;
+}
+
+.topic-banner-button-dsa{
+  background-color: #1b5e20;
+}
+
+.topic-banner-ai{
+  background: linear-gradient(135deg, #1e1b4b 0%, #4338ca 60%, #6d28d9 100%);
+}
+
+.topic-banner-badge-ai{
+  background:#f59e0b;
+  color:#fff;
+}
+
+.topic-banner-button-ai{
+  background:#fff;
+  color:#4338ca;
+}
+
+.topic-banner-sql{
+  background: linear-gradient(to right, #f68080 ,#f64040);
+}
+
+.topic-banner-button-sql{
+  color: salmon;
+}
+
+.topic-banner-badge-sql{
+  background-color: salmon;
+  color: blue;
+}
+
+.topic-banner-codingground{
+  background: linear-gradient(135deg, #fff8e1 0%, #ffecb3 30%, #ffd54f 100%);
+}
+
+.topic-banner-codingground h3{
+  color:#e65100;
+}
+
+.topic-banner-codingground p{
+  color:#bf360c;
+}
+
+.topic-banner-button-codingground{
+  background:#f57f17;
+  color:#fff;
+}
+
+.topic-banner-badge-codingground{
+  background-color: #ffecb3;
+  color: blue;
+  font-weight: bold;
+}
+
+.topic-banner-interview-questions{
+  background: linear-gradient(to right, #75a2dd, #1877f2)
+}
+
+.topic-banner-button-interview{
+  color: #1877f2;
+  background-color: #ecf3fd;
+  font-weight: 600;
 }
 
 /*
