@@ -33,6 +33,10 @@ body{
   align-items: center;
 }
 
+.topbar-link:hover{
+  color: gold;
+}
+
 .topbar-svg{
   width: 16px;
   height: 16px;
