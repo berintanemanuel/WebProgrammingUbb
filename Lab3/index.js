@@ -13,12 +13,13 @@ document.addEventListener('mousemove', (e) =>{
   mouseY = e.clientY;
   if(boxIsDragged){
     console.log(mouseX, mouseY);
-    box.style.left = `${mouseX}px`;
-    box.style.top = `${mouseY}px`;
+    box.style.left = `${Math.max(mouseX, 0)}px`;
+    box.style.top = `${Math.max(mouseY, 0)}px`;
   }
 });
 
-box.addEventListener("mousedown", () => {
+box.addEventListener("mousedown", (event) => {
+  event.preventDefault(); /// So that the text is not selected
   boxIsDragged = true;
 });
 
