@@ -4,17 +4,13 @@ boxIsDragged = false;
 mouseX = 0;
 mouseY  = 0;
 
-function hello(){
-  console.log(mouseX, mouseY);
-}
-
 document.addEventListener('mousemove', (e) =>{
   mouseX = e.clientX;
   mouseY = e.clientY;
   if(boxIsDragged){
-    console.log(mouseX, mouseY);
-    box.style.left = `${Math.max(mouseX, 0)}px`;
-    box.style.top = `${Math.max(mouseY, 0)}px`;
+    //console.log(mouseX, mouseY);
+    box.style.left = `${Math.max(box.offsetWidth / 2, Math.min(mouseX, window.innerWidth - box.offsetWidth / 2)) - box.offsetWidth / 2}px`;
+    box.style.top = `${Math.max(box.offsetHeight / 2, Math.min(mouseY, window.innerHeight - box.offsetHeight / 2)) - box.offsetHeight / 2}px`;
   }
 });
 
