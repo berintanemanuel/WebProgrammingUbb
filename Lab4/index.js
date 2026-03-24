@@ -1,5 +1,12 @@
 $("#clickMeBtn").on("click", function(event){
   event.preventDefault();
+
+  $("#firstName").prop("disabled", true);
+  $("#lastName").prop("disabled", true);
+  $("#email").prop("disabled", true);
+  $("#description").prop("disabled", true);
+  $("#observations").prop("disabled", true);
+
   $("#grayDiv").show();
   $("#modalWindow").show();
 });
@@ -17,15 +24,3 @@ $(".submitButton").on('click', function(){
   $("#grayDiv").hide();
   $("#modalWindow").hide();
 });
-
-function getStyleOfModalWindowWhenShown(){
-  let style = {
-    "background-color": 'white',
-    "display": 'flex',
-    "flex-direction": 'column',
-    "justify-content": 'space-between',
-    "align-items": 'center',
-    "gap": '20px'
-  };
-  return style;
-}
