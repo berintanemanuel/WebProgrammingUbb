@@ -11,6 +11,13 @@ $("#clickMeBtn").on("click", function(event){
   $("#modalWindow").show();
 });
 
+function enableFormButtons(){
+  form_ids = ["#firstName", "#lastName", "#email", "#description", "#observations"];
+  $.each(form_ids, function(idx, id){
+    $(id).prop("disabled", false);
+  });
+}
+
 $(".submitButton").on('click', function(){
   let computedString = "";
   //computedString += $(".clubInput").val();
@@ -26,6 +33,8 @@ $(".submitButton").on('click', function(){
 
   let newText = $("#firstName").val() + computedString;
   $("#firstName").val(newText);
+
+  enableFormButtons();
 
   $("#grayDiv").hide();
   $("#modalWindow").hide();
