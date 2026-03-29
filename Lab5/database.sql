@@ -18,6 +18,7 @@ CREATE TABLE documents(
   format VARCHAR(100) NOT NULL,
   author INT NOT NULL,
   created_at DATETIME NOT NULL,
+  description VARCHAR(500),
   PRIMARY KEY (id),
   FOREIGN KEY (author) REFERENCES authors(id)  
 );
