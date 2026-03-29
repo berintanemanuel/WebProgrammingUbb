@@ -9,9 +9,9 @@
 <body>
   <main>
     <div class="container">
-      <button class="btn">List Documents</button>
-      <button class="btn">List Authors</button>
-      <button class="btn">Add Author</button>
+      <button class="btn" onclick="location.href='list_documents.php'">List Documents</button>
+      <button class="btn" onclick="location.href='list_authors.php'">List Authors</button>
+      <button class="btn" onclick="location.href='add_author.php'">Add Author</button>
     </div>
   </main>
 </body>
