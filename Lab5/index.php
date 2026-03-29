@@ -1,2 +1,18 @@
-Welcome <?php echo $_POST["fname"]; ?>.<br/>
-You are <?php echo $_POST["age"]; ?> years old!
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <main>
+    <div class="container">
+      <button class="btn">List Documents</button>
+      <button class="btn">List Authors</button>
+      <button class="btn">Add Author</button>
+    </div>
+  </main>
+</body>
+</html>
