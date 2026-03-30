@@ -1,0 +1,30 @@
+const displayAllAuthors = () => {
+  let tableBody = $("#authors-table tbody");
+  $.ajax({
+    type: 'GET',
+    url: "http://localhost/controllers/author_controller.php",
+    data: {action: "getAllAuthors"},
+    success: (data) => {
+      authors = JSON.parse(data);
+      load_authors(tableBody, authors);
+    },
+  });
+};
+
+const load_authors = (tableBody, authors) => {
+  tableBody.html("");
+  authors.forEach(author => {
+    tableBody.append(`
+      <tr>
+        <td>${author.id}</td>
+        <td>${author.name}</td>
+        <td>${author.email}</td>
+        <td><button>Add</button></td>
+      </tr>
+    `);
+  });
+}
+
+$(document).ready(function() {
+  displayAllAuthors();
+});
