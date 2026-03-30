@@ -8,6 +8,18 @@
 </head>
 <body>
   <h1>Documents</h1>
+  <button id="show-all-btn">Show all</button>
+  <div>
+    <label for="type">Type</label><br>
+    <input type="text" name="type" id="type">
+    <button id="show-by-type-btn">Filter by type</button>
+  </div>
+  <div>
+    <label for="type">Format</label><br>
+    <input type="text" name="format" id="format">
+    <button id="show-by-format-btn">Filter by format</button>
+  </div>
+  <h3 id="filter-information">Showing all</h3>
   <table class="tbl" id="documents-table">
     <thead>
       <tr>

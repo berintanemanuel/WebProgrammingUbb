@@ -45,10 +45,54 @@ function getAllDocuments(){
   }
 }
 
+function getDocumentsByType($type){
+  try {
+      $database = new Database();
+      $conn = $database->getConnection();
+
+      $stmt = $conn->prepare("SELECT * FROM documents WHERE type = :type");
+      $stmt->bindParam(":type", $type);
+      $stmt->execute();
+
+      $documents = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+      echo json_encode($documents);
+
+  } catch(PDOException $e) {
+      echo json_encode(["error" => $e->getMessage()]);
+  }
+}
+
+function getDocumentsByFormat($format){
+  try {
+      $database = new Database();
+      $conn = $database->getConnection();
+
+      $stmt = $conn->prepare("SELECT * FROM documents WHERE format = :format");
+      $stmt->bindParam(":format", $format);
+      $stmt->execute();
+
+      $documents = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+      echo json_encode($documents);
+
+  } catch(PDOException $e) {
+      echo json_encode(["error" => $e->getMessage()]);
+  }
+}
+
 if(isset($_POST["action"]) && $_POST["action"] == 'addDocument'){
   $document = json_decode($_POST["document"]);
   add_document($document->{'title'}, $document->{'nopages'}, $document->{'type'}, $document->{'format'}, $document->{'author_id'});
 }
 
-if(isset($_GET['action']) && $_GET['action'] == 'getAllDocuments')
-  getAllDocuments();
+if(isset($_GET['action']) && $_GET['action'] == 'getDocuments'){
+  if($_GET['filter'] == 'all')
+    getAllDocuments();
+  else if($_GET['filter'] == 'type'){
+    getDocumentsByType($_GET['filter_value']);
+  }
+  else if ($_GET['filter'] == 'format'){
+    getDocumentsByFormat($_GET['filter_value']);
+  }
+}
