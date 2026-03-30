@@ -100,6 +100,29 @@ function deleteDocument($id){
   }
 }
 
+function editDocument($id, $doc){
+  try {
+      $database = new Database();
+      $conn = $database->getConnection();
+
+      $stmt = $conn->prepare("UPDATE documents SET title = :title, number_of_pages = :nopages, type = :type, format = :format WHERE id = :id");
+      $stmt->bindParam(":title", $doc->{"title"});
+      $stmt->bindParam(":nopages", $doc->{"nopages"});
+      $stmt->bindParam(":type", $doc->{"type"});
+      $stmt->bindParam(":format", $doc->{"format"});
+      $stmt->bindParam(":id", $id, PDO::PARAM_INT);
+
+      if ($stmt->execute()) {
+          echo "success";
+      } else {
+          echo "Error deleting document.";
+      }
+
+  } catch(PDOException $e) {
+      echo "Error: " . $e->getMessage();
+  }
+}
+
 if(isset($_POST["action"]) && $_POST["action"] == 'addDocument'){
   $document = json_decode($_POST["document"]);
   add_document($document->{'title'}, $document->{'nopages'}, $document->{'type'}, $document->{'format'}, $document->{'author_id'});
@@ -118,4 +141,9 @@ if(isset($_GET['action']) && $_GET['action'] == 'getDocuments'){
 
 if(isset($_POST["action"]) && $_POST["action"] == 'deleteDocument'){
   deleteDocument($_POST["id"]);
+}
+
+if(isset($_POST["action"]) && $_POST["action"] == 'editDocument'){
+  $doc = json_decode($_POST["document"]);
+  editDocument($_POST["id"], $doc);
 }

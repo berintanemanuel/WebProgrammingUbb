@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Add a document</title>
+  <title>Edit document</title>
   <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
   <div class="container">
-    <h1>Add a document</h1>
-    <form method="post" id="add-document-form">
+    <h1>Edit document</h1>
+    <form method="post" id="edit-document-form">
       <div class="form-container">
         <label for="title">Title</label><br>
         <input type="text" name="title" id="title" required>
@@ -27,13 +27,13 @@
         <input type="text" name="format" id="format" required>
       </div>
       <div class="form-submit-container">
-        <a href="./index.php" class="cancel-add-document">Cancel</a>
-        <button type="submit" id="submit-add-document-button">Save</button>
+        <a href="./list_documents.php" class="cancel-edit-document">Cancel</a>
+        <button type="submit" id="submit-edit-document-button">Save</button>
       </div>
     </form>
   </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="./js/add_documents.js"></script>
+<script src="./js/edit_document.js"></script>
 </body>
 </html>

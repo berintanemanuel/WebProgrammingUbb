@@ -54,8 +54,7 @@ const deleteDocument = (id) => {
       action: "deleteDocument",
       id: id
     },
-    success: (response) => {
-      console.log(response);
+    success: () => {
       displayAllDocuments(); 
     },
     error: (err) => {
@@ -63,6 +62,10 @@ const deleteDocument = (id) => {
     }
   });
 };
+
+const editDocument = (id) => {
+  window.location.href=`../edit_document.php?document_id=${id}`;
+}
 
 const load_documents = (tableBody, documents) => {
   tableBody.html("");
@@ -75,6 +78,9 @@ const load_documents = (tableBody, documents) => {
         <td>${document.type}</td>
         <td>${document.format}</td>
         <td>${document.author}</td>
+        <td>
+          <button onclick="editDocument(${document.id})">Edit</button>
+        </td>
         <td>
           <button onclick="deleteDocument(${document.id})">Delete</button>
         </td>
