@@ -17,8 +17,6 @@ CREATE TABLE documents(
   type VARCHAR(100) NOT NULL,
   format VARCHAR(100) NOT NULL,
   author INT NOT NULL,
-  created_at DATETIME NOT NULL,
-  description VARCHAR(500),
   PRIMARY KEY (id),
   FOREIGN KEY (author) REFERENCES authors(id)  
 );
@@ -28,7 +26,7 @@ INSERT INTO authors (name, email) VALUES
 ('J. K. Rowling', 'jkrowling@gmail.com'),
 ('Emanuel Berintan', 'nathanberintan@gmail.com');
 
-INSERT INTO documents(title, number_of_pages, type, format, author, created_at) VALUES
-('Games of Thrones 1', 650, 'Book', 'EPUB', 1, NOW()),
-('Harry Potter 3', 400, 'Book', 'PDF', 2, NOW()),
-('Bad article', 5, 'Article', 'PDF', 3, NOW());
+INSERT INTO documents(title, number_of_pages, type, format, author) VALUES
+('Games of Thrones 1', 650, 'Book', 'EPUB'),
+('Harry Potter 3', 400, 'Book', 'PDF'),
+('Bad article', 5, 'Article', 'PDF');

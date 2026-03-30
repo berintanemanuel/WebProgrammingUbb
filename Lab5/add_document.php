@@ -11,8 +11,8 @@
     <h1>Add an author</h1>
     <form method="post" id="add-author-form">
       <div class="form-container">
-        <label for="name">Title</label><br>
-        <input type="text" name="name" id="name" required>
+        <label for="title">Title</label><br>
+        <input type="text" name="title" id="title" required>
       </div>
       <div class="form-container">
         <label for="email">Number of pages</label><br>
@@ -32,5 +32,8 @@
       </div>
     </form>
   </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="./js/add_documents.js"></script>
 </body>
 </html>
