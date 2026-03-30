@@ -19,10 +19,14 @@ const load_authors = (tableBody, authors) => {
         <td>${author.id}</td>
         <td>${author.name}</td>
         <td>${author.email}</td>
-        <td><button>Add</button></td>
+        <td><button onclick="redirect_to_add_document_page(${author.id})">Add</button></td>
       </tr>
     `);
   });
+}
+
+function redirect_to_add_document_page(author_id){
+  window.location.href=`../add_document.php?author_id=${author_id}`;
 }
 
 $(document).ready(function() {
