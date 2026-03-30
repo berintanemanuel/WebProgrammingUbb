@@ -42,6 +42,28 @@ const displayDocumentsByFormat = () => {
   });
 }
 
+const deleteDocument = (id) => {
+  if (!confirm("Are you sure you want to delete this document?")) {
+    return;
+  }
+
+  $.ajax({
+    type: 'POST',
+    url: "http://localhost/controllers/document_controller.php",
+    data: {
+      action: "deleteDocument",
+      id: id
+    },
+    success: (response) => {
+      console.log(response);
+      displayAllDocuments(); 
+    },
+    error: (err) => {
+      console.error("Delete error:", err);
+    }
+  });
+};
+
 const load_documents = (tableBody, documents) => {
   tableBody.html("");
   documents.forEach(document=> {
@@ -53,6 +75,9 @@ const load_documents = (tableBody, documents) => {
         <td>${document.type}</td>
         <td>${document.format}</td>
         <td>${document.author}</td>
+        <td>
+          <button onclick="deleteDocument(${document.id})">Delete</button>
+        </td>
       </tr>
     `);
   });

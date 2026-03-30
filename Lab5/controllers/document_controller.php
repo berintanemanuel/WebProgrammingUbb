@@ -81,6 +81,25 @@ function getDocumentsByFormat($format){
   }
 }
 
+function deleteDocument($id){
+  try {
+      $database = new Database();
+      $conn = $database->getConnection();
+
+      $stmt = $conn->prepare("DELETE FROM documents WHERE id = :id");
+      $stmt->bindParam(":id", $id, PDO::PARAM_INT);
+
+      if ($stmt->execute()) {
+          echo "success";
+      } else {
+          echo "Error deleting document.";
+      }
+
+  } catch(PDOException $e) {
+      echo "Error: " . $e->getMessage();
+  }
+}
+
 if(isset($_POST["action"]) && $_POST["action"] == 'addDocument'){
   $document = json_decode($_POST["document"]);
   add_document($document->{'title'}, $document->{'nopages'}, $document->{'type'}, $document->{'format'}, $document->{'author_id'});
@@ -95,4 +114,8 @@ if(isset($_GET['action']) && $_GET['action'] == 'getDocuments'){
   else if ($_GET['filter'] == 'format'){
     getDocumentsByFormat($_GET['filter_value']);
   }
+}
+
+if(isset($_POST["action"]) && $_POST["action"] == 'deleteDocument'){
+  deleteDocument($_POST["id"]);
 }
