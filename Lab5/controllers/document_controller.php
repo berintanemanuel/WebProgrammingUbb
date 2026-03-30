@@ -28,7 +28,27 @@ function add_document($title, $nopages, $type, $format, $author_id){
   }
 }
 
+function getAllDocuments(){
+  try {
+      $database = new Database();
+      $conn = $database->getConnection();
+
+      $stmt = $conn->prepare("SELECT * FROM documents");
+      $stmt->execute();
+
+      $documents = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+      echo json_encode($documents);
+
+  } catch(PDOException $e) {
+      echo json_encode(["error" => $e->getMessage()]);
+  }
+}
+
 if(isset($_POST["action"]) && $_POST["action"] == 'addDocument'){
   $document = json_decode($_POST["document"]);
   add_document($document->{'title'}, $document->{'nopages'}, $document->{'type'}, $document->{'format'}, $document->{'author_id'});
 }
+
+if(isset($_GET['action']) && $_GET['action'] == 'getAllDocuments')
+  getAllDocuments();
