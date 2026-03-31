@@ -183,8 +183,24 @@ if(isset($_POST["action"]) && $_POST["action"] == 'deleteDocument'){
 }
 
 if(isset($_POST["action"]) && $_POST["action"] == 'editDocument'){
-  $doc = json_decode($_POST["document"]);
-  editDocument($_POST["id"], $doc);
+  $document = json_decode($_POST["document"]);
+
+  $title = trim($document->{'title'});
+  $nopages = (int)$document->{'nopages'};
+  $type = trim($document->{'type'});
+  $format = trim($document->{'format'});
+
+  if(empty($title) || empty($type) || empty($format)){
+    echo "All fields are required!";
+    return;
+  }
+
+  if($nopages <= 0){
+    echo "Number of pages must be greater than 0!";
+    return;
+  }
+
+  editDocument($_POST["id"], $document);
 }
 
 if(isset($_GET["action"]) && $_GET["action"] == "getDocumentById"){

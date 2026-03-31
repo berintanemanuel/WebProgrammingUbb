@@ -28,6 +28,9 @@ const editDocument = () => {
         alert(response);
       }
     },
+    error: () => {
+      alert("Something went wrong!");
+    }
   });
 
 }
