@@ -21,9 +21,16 @@ const addDocument = () => {
       action: "addDocument",
       document: JSON.stringify(doc)
     },
-    success: () => {
-      window.location.href = "../index.php";
+    success: (response) => {
+      if (response === "success") {
+        window.location.href = "../index.php";
+      } else {
+        alert(response);
+      }
     },
+    error: () => {
+      alert("Something went wrong!");
+    }
   });
 
 }

@@ -18,10 +18,9 @@ function add_document($title, $nopages, $type, $format, $author_id){
       $stmt->bindParam(":author", $author_id);
 
       if ($stmt->execute()) {
-          header("Location: ../index.php");
-          exit();
+        echo "success";
       } else {
-          echo "Error inserting document.";
+        echo "Error inserting document.";
       }
   } catch (PDOException $e) {
       echo "Error: " . $e->getMessage();
@@ -143,7 +142,29 @@ function getDocumentById($id){
 
 if(isset($_POST["action"]) && $_POST["action"] == 'addDocument'){
   $document = json_decode($_POST["document"]);
-  add_document($document->{'title'}, $document->{'nopages'}, $document->{'type'}, $document->{'format'}, $document->{'author_id'});
+
+  $title = trim($document->{'title'});
+  $nopages = (int)$document->{'nopages'};
+  $type = trim($document->{'type'});
+  $format = trim($document->{'format'});
+  $author_id = (int)$document->{'author_id'};
+
+  if(empty($title) || empty($type) || empty($format)){
+    echo "All fields are required!";
+    return;
+  }
+
+  if($nopages <= 0){
+    echo "Number of pages must be greater than 0!";
+    return;
+  }
+
+  if($author_id <= 0){
+    echo "Invalid author!";
+    return;
+  }
+
+  add_document($title, $nopages, $type, $format, $author_id);
 }
 
 if(isset($_GET['action']) && $_GET['action'] == 'getDocuments'){
