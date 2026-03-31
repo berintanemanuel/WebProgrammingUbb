@@ -23,6 +23,7 @@
   </tbody>
 </table>
 
+<button id="go-home-btn">Home</button>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="./js/list_authors.js"></script>
 

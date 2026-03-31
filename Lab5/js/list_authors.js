@@ -25,10 +25,15 @@ const load_authors = (tableBody, authors) => {
   });
 }
 
+const goHome = () => {
+  window.location.href=`../index.php`;
+}
+
 function redirect_to_add_document_page(author_id){
   window.location.href=`../add_document.php?author_id=${author_id}`;
 }
 
 $(document).ready(function() {
   displayAllAuthors();
+  $("#go-home-btn").click(function(){goHome()});
 });

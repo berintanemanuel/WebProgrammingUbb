@@ -67,6 +67,10 @@ const editDocument = (id) => {
   window.location.href=`../edit_document.php?document_id=${id}`;
 }
 
+const goHome = () => {
+  window.location.href=`../index.php`;
+}
+
 const load_documents = (tableBody, documents) => {
   tableBody.html("");
   documents.forEach(document=> {
@@ -94,4 +98,5 @@ $(document).ready(function() {
   $("#show-all-btn").click(function(){displayAllDocuments()});
   $("#show-by-type-btn").click(function(){displayDocumentsByType()});
   $("#show-by-format-btn").click(function(){displayDocumentsByFormat()});
+  $("#go-home-btn").click(function(){goHome()});
 });
