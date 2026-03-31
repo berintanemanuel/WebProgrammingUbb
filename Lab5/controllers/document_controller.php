@@ -123,6 +123,24 @@ function editDocument($id, $doc){
   }
 }
 
+function getDocumentById($id){
+  try {
+      $database = new Database();
+      $conn = $database->getConnection();
+
+      $stmt = $conn->prepare("SELECT * FROM documents WHERE id = :id");
+      $stmt->bindParam(":id", $id, PDO::PARAM_INT);
+      $stmt->execute();
+
+      $doc = $stmt->fetch(PDO::FETCH_ASSOC);
+
+      echo json_encode($doc);
+
+  } catch(PDOException $e) {
+      echo json_encode(["error" => $e->getMessage()]);
+  }
+}
+
 if(isset($_POST["action"]) && $_POST["action"] == 'addDocument'){
   $document = json_decode($_POST["document"]);
   add_document($document->{'title'}, $document->{'nopages'}, $document->{'type'}, $document->{'format'}, $document->{'author_id'});
@@ -146,4 +164,8 @@ if(isset($_POST["action"]) && $_POST["action"] == 'deleteDocument'){
 if(isset($_POST["action"]) && $_POST["action"] == 'editDocument'){
   $doc = json_decode($_POST["document"]);
   editDocument($_POST["id"], $doc);
+}
+
+if(isset($_GET["action"]) && $_GET["action"] == "getDocumentById"){
+  getDocumentById($_GET["id"]);
 }
