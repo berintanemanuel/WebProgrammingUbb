@@ -38,7 +38,7 @@ const addAuthor = () => {
     },
     success: (response) => {
       if (response === "success") {
-        window.location.href = "../index.php";
+        window.location.href = "../index.html";
       } else {
         alert(response);
       }

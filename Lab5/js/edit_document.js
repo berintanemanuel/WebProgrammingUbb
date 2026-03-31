@@ -23,7 +23,7 @@ const editDocument = () => {
     },
     success: (response) => {
       if (response === "success") {
-        window.location.href = "../list_documents.php";
+        window.location.href = "../list_documents.html";
       } else {
         alert(response);
       }

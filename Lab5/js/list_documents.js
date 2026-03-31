@@ -1,4 +1,8 @@
 const displayAllDocuments = () => {
+
+  localStorage.setItem("filter-by", "all");
+  localStorage.removeItem("filter-value");
+
   let tableBody = $("#documents-table tbody");
   $.ajax({
     type: 'GET',
@@ -15,6 +19,10 @@ const displayAllDocuments = () => {
 const displayDocumentsByType = () => {
   let tableBody = $("#documents-table tbody");
   let value = $("#type").val();
+
+  localStorage.setItem("filter-by", "type");
+  localStorage.setItem("filter-value", value);
+
   $.ajax({
     type: 'GET',
     url: "http://localhost/controllers/document_controller.php",
@@ -30,6 +38,10 @@ const displayDocumentsByType = () => {
 const displayDocumentsByFormat = () => {
   let tableBody = $("#documents-table tbody");
   let value = $("#format").val();
+
+  localStorage.setItem("filter-by", "format");
+  localStorage.setItem("filter-value", value);
+
   $.ajax({
     type: 'GET',
     url: "http://localhost/controllers/document_controller.php",
@@ -55,7 +67,7 @@ const deleteDocument = (id) => {
       id: id
     },
     success: () => {
-      displayAllDocuments(); 
+      displayFiltered(); 
     },
     error: (err) => {
       console.error("Delete error:", err);
@@ -64,11 +76,11 @@ const deleteDocument = (id) => {
 };
 
 const editDocument = (id) => {
-  window.location.href=`../edit_document.php?document_id=${id}`;
+  window.location.href=`../edit_document.html?document_id=${id}`;
 }
 
 const goHome = () => {
-  window.location.href=`../index.php`;
+  window.location.href=`../index.html`;
 }
 
 const load_documents = (tableBody, documents) => {
@@ -93,8 +105,50 @@ const load_documents = (tableBody, documents) => {
   });
 }
 
+function displayDocumentsByTypePrevious(type){
+  $("#type").val(type);
+  let tableBody = $("#documents-table tbody");
+  $.ajax({
+    type: 'GET',
+    url: "http://localhost/controllers/document_controller.php",
+    data: {action: "getDocuments", filter: "type", filter_value: type},
+    success: (data) => {
+      let documents = JSON.parse(data);
+      load_documents(tableBody, documents);
+      $("#filter-information").text(`Showing all documents with type = ${type}`)
+    }
+  });
+}
+
+function displayDocumentsByFormatPrevious(format){
+  $("#format").val(format);
+  let tableBody = $("#documents-table tbody");
+  $.ajax({
+    type: 'GET',
+    url: "http://localhost/controllers/document_controller.php",
+    data: {action: "getDocuments", filter: "format", filter_value: format},
+    success: (data) => {
+      let documents = JSON.parse(data);
+      load_documents(tableBody, documents);
+      $("#filter-information").text(`Showing all documents with type = ${format}`)
+    }
+  });
+}
+
+function displayFiltered(){
+  if(localStorage.getItem("filter-by") === 'all')
+    displayAllDocuments();
+  else if(localStorage.getItem("filter-by") === 'type')
+    displayDocumentsByTypePrevious(localStorage.getItem("filter-value"));
+  else if(localStorage.getItem("filter-by") === 'format')
+    displayDocumentsByFormatPrevious(localStorage.getItem("filter-value"));
+  else
+    displayAllDocuments();
+}
+
 $(document).ready(function() {
-  displayAllDocuments();
+  //displayAllDocuments();
+  displayFiltered();
   $("#show-all-btn").click(function(){displayAllDocuments()});
   $("#show-by-type-btn").click(function(){displayDocumentsByType()});
   $("#show-by-format-btn").click(function(){displayDocumentsByFormat()});

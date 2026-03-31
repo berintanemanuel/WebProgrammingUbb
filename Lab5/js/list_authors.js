@@ -26,11 +26,11 @@ const load_authors = (tableBody, authors) => {
 }
 
 const goHome = () => {
-  window.location.href=`../index.php`;
+  window.location.href=`../index.html`;
 }
 
 function redirect_to_add_document_page(author_id){
-  window.location.href=`../add_document.php?author_id=${author_id}`;
+  window.location.href=`../add_document.html?author_id=${author_id}`;
 }
 
 $(document).ready(function() {
