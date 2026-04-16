@@ -9,7 +9,12 @@
     </tr>
   </thead>
   <tbody>
-    
+    <tr *ngFor="let author of authors;">
+      <td>{{author.id}}</td>
+      <td>{{author.name}}</td>
+      <td>{{author.email}}</td>
+      <td><button>Add Document</button></td>
+    </tr>
   </tbody>
 </table>
 

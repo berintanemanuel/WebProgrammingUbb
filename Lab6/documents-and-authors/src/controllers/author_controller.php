@@ -16,6 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
 require_once "../db.php";
 
 function getAllAuthors(){
+  header('Content-Type: application/json');
   try {
       $database = new Database();
       $conn = $database->getConnection();

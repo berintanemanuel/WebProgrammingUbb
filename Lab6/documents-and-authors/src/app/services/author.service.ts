@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Author } from '../components/list-authors-component/list-authors-component';
 
 @Injectable({
   providedIn: 'root'
@@ -11,9 +12,9 @@ export class AuthorService {
 
   constructor(private http: HttpClient) {}
 
-  getAllAuthors(): Observable<any> {
+  getAllAuthors(): Observable<Author[]> {
     const params = new HttpParams().set('action', 'getAllAuthors');
-    return this.http.get(this.baseUrl, { params });
+    return this.http.get<Author[]>(this.baseUrl, { params });
   }
 
   addAuthor(author: any): Observable<any> {
