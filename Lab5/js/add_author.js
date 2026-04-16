@@ -8,7 +8,6 @@ const addAuthor = () => {
   let name = $("#name").val().trim();
   let email = $("#email").val().trim();
 
-  // 🔴 VALIDATION
   if (!name) {
     alert("Name cannot be empty!");
     return;
