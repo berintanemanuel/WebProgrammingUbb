@@ -1,11 +1,33 @@
 import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Router, RouterLink } from '@angular/router';
+import { AuthorService } from '../../services/author.service';
 
 @Component({
   selector: 'app-add-author',
-  imports: [RouterLink],
+  imports: [RouterLink, ReactiveFormsModule],
   templateUrl: './add-author.html',
 })
 export class AddAuthorComponent {
-  
+  authorForm = new FormGroup({
+    name: new FormControl('', [Validators.required]),
+    email: new FormControl('', [Validators.required, Validators.email]),
+  });
+
+  constructor(
+    private authorService: AuthorService,
+    private router: Router
+  ){}
+
+  onSubmit(){
+    if(this.authorForm.valid){
+      this.authorService.addAuthor(this.authorForm.value).subscribe({
+          next: (response) => {
+            console.log("Author added!", response);
+            this.router.navigate(['/']);
+          },
+          error: (err) => console.error(err)
+      });
+    }
+  }
 }

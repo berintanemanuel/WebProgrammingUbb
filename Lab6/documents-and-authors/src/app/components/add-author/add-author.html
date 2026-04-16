@@ -1,20 +1,20 @@
 <div class="container">
   <h1>Add an author</h1>
 
-  <form id="add-author-form">
+  <form [formGroup]="authorForm" (ngSubmit)="onSubmit()">
     <div class="form-container">
       <label for="name">Name</label><br>
-      <input type="text" id="name" required>
+      <input type="text" id="name" formControlName="name" required>
     </div>
 
     <div class="form-container">
       <label for="email">Email</label><br>
-      <input type="text" id="email" required>
+      <input type="text" id="email" formControlName="email" required>
     </div>
 
     <div class="form-submit-container">
       <a routerLink="/">Cancel</a>
-      <button type="submit" id="submit-add-author-button">Save</button>
+      <button type="submit">Save</button>
     </div>
   </form>
 </div>
