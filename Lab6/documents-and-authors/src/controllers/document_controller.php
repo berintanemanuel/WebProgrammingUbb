@@ -1,4 +1,19 @@
 <?php
+
+header("Access-Control-Allow-Origin: http://localhost:4200");
+
+// 2. Allow the methods you are using
+header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
+
+// 3. Allow specific headers (Angular sends 'Content-Type' for POSTs)
+header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
+
+// 4. Handle "Preflight" requests
+// Browsers send an OPTIONS request before a POST to check permissions
+if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
+    exit;
+}
+
 require_once "../db.php";
 
 function add_document($title, $nopages, $type, $format, $author_id){
@@ -18,12 +33,14 @@ function add_document($title, $nopages, $type, $format, $author_id){
       $stmt->bindParam(":author", $author_id);
 
       if ($stmt->execute()) {
-        echo "success";
+        echo json_encode(["status" => "success"]);
       } else {
-        echo "Error inserting document.";
+        http_response_code(500);
+        echo json_encode(["status" => "error", "message" => "Error inserting document."]);
       }
   } catch (PDOException $e) {
-      echo "Error: " . $e->getMessage();
+    http_response_code(500);
+    echo json_encode(["status" => "error", "message" => $e->getMessage()]);
   }
 }
 
