@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-add-author',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './add-author.html',
-  styleUrl: './add-author.css',
 })
-export class AddAuthor {
+export class AddAuthorComponent {
   
 }
