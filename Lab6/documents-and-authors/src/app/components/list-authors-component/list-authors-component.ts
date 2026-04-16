@@ -30,7 +30,6 @@ export class ListAuthorsComponent {
     this.authorService.getAllAuthors().subscribe({
       next: (response: Author[]) => {
         this.authors = response;
-        console.log(this.authors);
         this.cdr.detectChanges();
       },
       error: (err) => {console.error(err);}

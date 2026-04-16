@@ -23,7 +23,6 @@ export class AddAuthorComponent {
     if(this.authorForm.valid){
       this.authorService.addAuthor(this.authorForm.value).subscribe({
           next: (response) => {
-            console.log("Author added!", response);
             this.router.navigate(['/']);
           },
           error: (err) => console.error(err)
