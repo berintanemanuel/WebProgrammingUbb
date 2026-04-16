@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class AuthorService {
 
-  private baseUrl = 'http://localhost/controllers/author_controller.php';
+  private baseUrl = 'http://localhost/src/controllers/author_controller.php';
 
   constructor(private http: HttpClient) {}
 

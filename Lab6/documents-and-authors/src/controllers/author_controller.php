@@ -1,4 +1,18 @@
 <?php
+header("Access-Control-Allow-Origin: http://localhost:4200");
+
+// 2. Allow the methods you are using
+header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
+
+// 3. Allow specific headers (Angular sends 'Content-Type' for POSTs)
+header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
+
+// 4. Handle "Preflight" requests
+// Browsers send an OPTIONS request before a POST to check permissions
+if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
+    exit;
+}
+
 require_once "../db.php";
 
 function getAllAuthors(){
@@ -28,9 +42,11 @@ function addAuthor($name, $email){
       $stmt->bindParam(":email", $email);
 
       if ($stmt->execute()) {
-          echo "success";
+          // Send a JSON object instead of a plain string
+          echo json_encode(["status" => "success", "message" => "Author added"]);
       } else {
-          echo "Error inserting author.";
+          http_response_code(500);
+          echo json_encode(["status" => "error", "message" => "Error inserting author"]);
       }
 
   } catch(PDOException $e) {
