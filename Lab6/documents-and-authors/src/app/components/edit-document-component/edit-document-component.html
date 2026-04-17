@@ -3,19 +3,19 @@
     <form method="post" [formGroup]="documentForm" (ngSubmit)="onSubmit()">
       <div class="form-container">
         <label for="title">Title</label><br>
-        <input type="text" name="title" id="title" formControlName="title" [(ngModel)]="titleInput" required>
+        <input type="text" name="title" id="title" formControlName="title" required>
       </div>
       <div class="form-container">
         <label for="email">Number of pages</label><br>
-        <input type="number" name="nopages" id="nopages" formControlName="nopages" [(ngModel)]="nopagesInput" required>
+        <input type="number" name="nopages" id="nopages" formControlName="nopages" required>
       </div>
       <div class="form-container">
         <label for="type">Type</label><br>
-        <input type="text" name="type" formControlName="type" [(ngModel)]="typeInput" required>
+        <input type="text" name="type" formControlName="type" required>
       </div>
       <div class="form-container">
         <label for="format">Format</label><br>
-        <input type="text" name="format" id="format" formControlName="format" [(ngModel)]="formatInput" required>
+        <input type="text" name="format" id="format" formControlName="format" required>
       </div>
       <div class="form-submit-container">
         <a routerLink="/list-documents-component" class="cancel-edit-document">Cancel</a>

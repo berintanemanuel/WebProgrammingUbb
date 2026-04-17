@@ -20,10 +20,6 @@ export class EditDocumentComponent {
   })
 
   documentId: number | null = null;
-  titleInput: string = '';
-  nopagesInput: number = 0;
-  typeInput: string = '';
-  formatInput: string = '';
 
   constructor(
     private route: ActivatedRoute,
@@ -44,10 +40,12 @@ export class EditDocumentComponent {
       documentId=1;
     this.documentService.getDocumentById(documentId).subscribe({
       next: (response) => {
-        this.titleInput = response.title;
-        this.nopagesInput = response.nopages;
-        this.typeInput = response.type;
-        this.formatInput = response.format;
+        this.documentForm.patchValue({
+          title: response.title,
+          nopages: response.nopages,
+          type: response.type,
+          format: response.format
+        });
       },
       error: (err) => console.error(err)
     });
@@ -62,7 +60,7 @@ export class EditDocumentComponent {
       };
       this.documentService.editDocument(this.documentId, this.documentForm.value).subscribe({
           next: (response) => {
-            this.router.navigate(['/']);
+            this.router.navigate(['/list-documents-component']);
           },
           error: (err) => console.error(err)
       });
