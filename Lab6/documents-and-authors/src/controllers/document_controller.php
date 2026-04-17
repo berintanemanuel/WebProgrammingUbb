@@ -106,9 +106,10 @@ function deleteDocument($id){
       $stmt->bindParam(":id", $id, PDO::PARAM_INT);
 
       if ($stmt->execute()) {
-          echo "success";
+          echo json_encode(["status" => "success"]);
       } else {
-          echo "Error deleting document.";
+          http_response_code(500);
+          echo json_encode(["status" => "error", "message" => "Error deleting document"]);
       }
 
   } catch(PDOException $e) {
@@ -129,13 +130,14 @@ function editDocument($id, $doc){
       $stmt->bindParam(":id", $id, PDO::PARAM_INT);
 
       if ($stmt->execute()) {
-          echo "success";
+          echo json_encode(["status" => "success"]);
       } else {
-          echo "Error deleting document.";
+          http_response_code(500);
+          echo json_encode(["status" => "error", "message" => "Error editing document"]);
       }
 
   } catch(PDOException $e) {
-      echo "Error: " . $e->getMessage();
+      echo json_encode(["error" => $e->getMessage()]);
   }
 }
 
@@ -167,17 +169,20 @@ if(isset($_POST["action"]) && $_POST["action"] == 'addDocument'){
   $author_id = (int)$document->{'author_id'};
 
   if(empty($title) || empty($type) || empty($format)){
-    echo "All fields are required!";
+    http_response_code(500);
+    echo json_encode(["status" => "error", "message" => "All fields are required!"]);
     return;
   }
 
   if($nopages <= 0){
-    echo "Number of pages must be greater than 0!";
+    http_response_code(500);
+    echo json_encode(["status" => "error", "message" => "Number of pages must be greater than 0!"]);
     return;
   }
 
   if($author_id <= 0){
-    echo "Invalid author!";
+    http_response_code(500);
+    echo json_encode(["status" => "error", "message" => "Invalid author"]);
     return;
   }
 
@@ -208,12 +213,14 @@ if(isset($_POST["action"]) && $_POST["action"] == 'editDocument'){
   $format = trim($document->{'format'});
 
   if(empty($title) || empty($type) || empty($format)){
-    echo "All fields are required!";
+    http_response_code(500);
+    echo json_encode(["status" => "error", "message" => "All fields are required"]);
     return;
   }
 
   if($nopages <= 0){
-    echo "Number of pages must be greater than 0!";
+    http_response_code(500);
+    echo json_encode(["status" => "error", "message" => "Number of pages must be greater than 0!"]);
     return;
   }
 
