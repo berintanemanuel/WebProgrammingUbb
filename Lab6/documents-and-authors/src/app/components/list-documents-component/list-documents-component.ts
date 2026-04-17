@@ -46,7 +46,7 @@ export class ListDocumentsComponent implements OnInit {
       }
 
       localStorage.setItem('docFilter', JSON.stringify(this.docService.currentFilter));
-      
+
       this.cdr.detectChanges();
     });
   }
@@ -61,6 +61,6 @@ export class ListDocumentsComponent implements OnInit {
   }
 
   onEdit(id: number) {
-    this.router.navigate(['/edit-document', id]);
+    this.router.navigate(['/edit-document-component', id]);
   }
 }

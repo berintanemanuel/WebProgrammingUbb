@@ -1,0 +1,25 @@
+<div class="container">
+    <h1>Edit document</h1>
+    <form method="post" [formGroup]="documentForm" (ngSubmit)="onSubmit()">
+      <div class="form-container">
+        <label for="title">Title</label><br>
+        <input type="text" name="title" id="title" formControlName="title" required>
+      </div>
+      <div class="form-container">
+        <label for="email">Number of pages</label><br>
+        <input type="number" name="nopages" id="nopages" formControlName="nopages" required>
+      </div>
+      <div class="form-container">
+        <label for="type">Type</label><br>
+        <input type="text" name="type" id="type" formControlName="type" required>
+      </div>
+      <div class="form-container">
+        <label for="format">Format</label><br>
+        <input type="text" name="format" id="format" formControlName="format" required>
+      </div>
+      <div class="form-submit-container">
+        <a routerLink="/list-documents-component" class="cancel-edit-document">Cancel</a>
+        <button type="submit">Save</button>
+      </div>
+    </form>
+  </div>

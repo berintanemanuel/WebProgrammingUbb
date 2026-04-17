@@ -31,9 +31,16 @@ export class DocumentService{
     const body = new FormData();
     body.append('action', 'addDocument');
     body.append('document', JSON.stringify(document));
-    console.log(body);
     return this.http.post(this.baseUrl, body);
   }
+
+  editDocument(documentId: any, updatedDocument: any): Observable<any>{
+    const body = new FormData();
+    body.append('action', 'editDocument');
+    body.append('document', JSON.stringify(updatedDocument));
+    body.append('id', documentId);
+    return this.http.post(this.baseUrl, body)
+  } 
 
   getDocuments(filter: string = 'all', value: string = ''): Observable<Document[]> {
     let params = new HttpParams().set('action', 'getDocuments').set('filter', filter);

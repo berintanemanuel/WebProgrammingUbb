@@ -3,24 +3,15 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { DocumentService } from '../../services/document.service';
 
-export interface Document {
-  id: number;
-  title: string;
-  nopages: number,
-  type: string,
-  format: string,
-  author_id: number
-}
-
 @Component({
-  selector: 'app-add-document-component',
+  selector: 'app-edit-document-component',
   imports: [RouterLink, ReactiveFormsModule],
-  templateUrl: './add-document-component.html',
-  styleUrl: './add-document-component.css',
+  templateUrl: './edit-document-component.html',
+  styleUrl: './edit-document-component.css',
   standalone: true,
 })
 
-export class AddDocumentComponent {
+export class EditDocumentComponent {
   documentForm = new FormGroup({
     title: new FormControl('', [Validators.required]),
     nopages: new FormControl(0, [Validators.required]),
@@ -28,7 +19,7 @@ export class AddDocumentComponent {
     format: new FormControl('', [Validators.required])
   })
 
-  authorId: number | null = null;
+  documentId: number | null = null;
 
   constructor(
     private route: ActivatedRoute,
@@ -36,19 +27,18 @@ export class AddDocumentComponent {
     private router: Router
   ){}
 
-  ngOnInit() {
-    // Get the parameter named 'authorId' from the URL
-    const idParam = this.route.snapshot.params['authorId'];
-    this.authorId = idParam ? parseInt(idParam, 10) : null;
+  ngOnInit(){
+    const idParam = this.route.snapshot.params['documentId'];
+    this.documentId = idParam ? parseInt(idParam, 10) : null;
   }
 
   onSubmit(){
-    if(this.documentForm.valid && this.authorId){
+    if(this.documentForm.valid && this.documentId){
       const payload = {
         ...this.documentForm.value,
-        author_id: this.authorId
+        document_id: this.documentId
       };
-      this.documentService.addDocument(payload).subscribe({
+      this.documentService.editDocument(this.documentId, this.documentForm.value).subscribe({
           next: (response) => {
             this.router.navigate(['/']);
           },
@@ -56,5 +46,4 @@ export class AddDocumentComponent {
       });
     }
   }
-
 }
