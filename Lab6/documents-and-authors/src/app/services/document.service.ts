@@ -2,7 +2,6 @@ import { HttpClient, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import {Document} from "../components/add-document-component/add-document-component"
-import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -54,14 +53,7 @@ export class DocumentService{
 
   getDocumentById(documentId: number): Observable<Document>{
     let params = new HttpParams().set('action', 'getDocumentById').set('id', documentId);
-    return this.http.get<any>(this.baseUrl, { params }).pipe(
-      map(response => {
-        return{
-          ...response,
-          nopages: response.number_of_pages
-        } as Document;
-      })
-    );
+    return this.http.get<Document>(this.baseUrl, { params });
   }
 
   deleteDocument(id: number): Observable<any> {

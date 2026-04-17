@@ -42,7 +42,7 @@ export class EditDocumentComponent {
       next: (response) => {
         this.documentForm.patchValue({
           title: response.title,
-          nopages: response.nopages,
+          nopages: response.number_of_pages,
           type: response.type,
           format: response.format
         });

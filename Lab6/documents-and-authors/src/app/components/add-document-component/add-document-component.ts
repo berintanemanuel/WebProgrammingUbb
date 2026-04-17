@@ -6,7 +6,7 @@ import { DocumentService } from '../../services/document.service';
 export interface Document {
   id: number;
   title: string;
-  nopages: number,
+  number_of_pages: number,
   type: string,
   format: string,
   author_id: number
