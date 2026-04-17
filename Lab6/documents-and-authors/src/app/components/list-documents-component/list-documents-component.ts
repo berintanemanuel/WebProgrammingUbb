@@ -13,8 +13,9 @@ import { Document } from '../add-document-component/add-document-component';
 })
 export class ListDocumentsComponent implements OnInit {
   documents: Document[] = [];
-  filterText: string = 'Showing all documents';
   
+  get filterText() { return this.docService.currentFilter.text; }
+
   // These variables bind to the input fields via [(ngModel)]
   typeInput: string = '';
   formatInput: string = '';
@@ -22,17 +23,30 @@ export class ListDocumentsComponent implements OnInit {
   constructor(private docService: DocumentService, private router: Router, private cdr: ChangeDetectorRef) {}
 
   ngOnInit() {
-    this.loadDocuments('all');
-    console.log(this.documents);
+    // Restore the inputs from the service (optional, so the boxes stay filled)
+    if (this.docService.currentFilter.by === 'type') this.typeInput = this.docService.currentFilter.value;
+    if (this.docService.currentFilter.by === 'format') this.formatInput = this.docService.currentFilter.value;
+
+    // Load using the saved state
+    this.loadDocuments(this.docService.currentFilter.by, this.docService.currentFilter.value);
   }
 
   loadDocuments(filter: string, value: string = '') {
     this.docService.getDocuments(filter, value).subscribe(data => {
       this.documents = data;
-      console.log(data);
+      
+      this.docService.currentFilter.by = filter;
+      this.docService.currentFilter.value = value;
       // Update the UI text based on filter
-      if (filter === 'all') this.filterText = 'Showing all documents';
-      else this.filterText = `Showing documents where ${filter} = ${value}`;
+
+      if (filter === 'all') {
+        this.docService.currentFilter.text = 'Showing all documents';
+      } else {
+        this.docService.currentFilter.text = `Showing documents where ${filter} = ${value}`;
+      }
+
+      localStorage.setItem('docFilter', JSON.stringify(this.docService.currentFilter));
+      
       this.cdr.detectChanges();
     });
   }

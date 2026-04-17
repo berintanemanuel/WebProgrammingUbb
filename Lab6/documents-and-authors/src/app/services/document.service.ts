@@ -9,7 +9,18 @@ import {Document} from "../components/add-document-component/add-document-compon
 export class DocumentService{
   private baseUrl = 'http://localhost/src/controllers/document_controller.php';
 
-  constructor(private http: HttpClient) {}
+  currentFilter = {
+    by: 'all',
+    value: '',
+    text: 'Showing all documents'
+  };
+
+  constructor(private http: HttpClient) {
+    const saved = localStorage.getItem('docFilter');
+    if (saved) {
+      this.currentFilter = JSON.parse(saved);
+    }
+  }
 
   getAllDocuments(): Observable<Document[]>{
     const params = new HttpParams().set('action', 'getDocuments').set('filter','all');
