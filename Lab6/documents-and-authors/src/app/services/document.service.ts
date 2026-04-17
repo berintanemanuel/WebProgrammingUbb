@@ -23,4 +23,20 @@ export class DocumentService{
     console.log(body);
     return this.http.post(this.baseUrl, body);
   }
+
+  getDocuments(filter: string = 'all', value: string = ''): Observable<Document[]> {
+    let params = new HttpParams().set('action', 'getDocuments').set('filter', filter);
+    if (value) {
+      params = params.set('filter_value', value);
+    }
+    return this.http.get<Document[]>(this.baseUrl, { params });
+  }
+
+  deleteDocument(id: number): Observable<any> {
+    const body = new FormData();
+    body.append('action', 'deleteDocument');
+    body.append('id', id.toString());
+    return this.http.post(this.baseUrl, body);
+}
+
 }
