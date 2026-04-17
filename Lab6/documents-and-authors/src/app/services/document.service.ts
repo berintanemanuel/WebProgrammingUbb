@@ -12,7 +12,7 @@ export class DocumentService{
   constructor(private http: HttpClient) {}
 
   getAllDocuments(): Observable<Document[]>{
-    const params = new HttpParams().set('action', 'getAllDocuments');
+    const params = new HttpParams().set('action', 'getDocuments').set('filter','all');
     return this.http.get<Document[]>(this.baseUrl, {params});
   }
 
@@ -26,6 +26,7 @@ export class DocumentService{
 
   getDocuments(filter: string = 'all', value: string = ''): Observable<Document[]> {
     let params = new HttpParams().set('action', 'getDocuments').set('filter', filter);
+    console.log(filter);
     if (value) {
       params = params.set('filter_value', value);
     }
