@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { DocumentService } from '../../services/document.service';
@@ -20,16 +20,38 @@ export class EditDocumentComponent {
   })
 
   documentId: number | null = null;
+  titleInput: string = '';
+  nopagesInput: number = 0;
+  typeInput: string = '';
+  formatInput: string = '';
 
   constructor(
     private route: ActivatedRoute,
     private documentService: DocumentService,
-    private router: Router
+    private router: Router,
+    private cdr: ChangeDetectorRef
   ){}
 
   ngOnInit(){
     const idParam = this.route.snapshot.params['documentId'];
     this.documentId = idParam ? parseInt(idParam, 10) : null;
+    this.loadInitialValues(this.documentId);
+  }
+
+  loadInitialValues(documentId: number|null){
+    /// just to fix the annoying null type error
+    if(documentId == null)
+      documentId=1;
+    this.documentService.getDocumentById(documentId).subscribe({
+      next: (response) => {
+        this.titleInput = response.title;
+        this.nopagesInput = response.nopages;
+        this.typeInput = response.type;
+        this.formatInput = response.format;
+      },
+      error: (err) => console.error(err)
+    });
+    this.cdr.detectChanges();
   }
 
   onSubmit(){

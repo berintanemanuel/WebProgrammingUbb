@@ -44,11 +44,16 @@ export class DocumentService{
 
   getDocuments(filter: string = 'all', value: string = ''): Observable<Document[]> {
     let params = new HttpParams().set('action', 'getDocuments').set('filter', filter);
-    console.log(filter);
+    //console.log(filter);
     if (value) {
       params = params.set('filter_value', value);
     }
     return this.http.get<Document[]>(this.baseUrl, { params });
+  }
+
+  getDocumentById(documentId: number): Observable<Document>{
+    let params = new HttpParams().set('action', 'getDocumentById').set('id', documentId);
+    return this.http.get<Document>(this.baseUrl, { params });
   }
 
   deleteDocument(id: number): Observable<any> {
