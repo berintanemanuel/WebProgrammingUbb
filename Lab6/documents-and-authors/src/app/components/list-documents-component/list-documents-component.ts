@@ -16,18 +16,16 @@ export class ListDocumentsComponent implements OnInit {
   
   get filterText() { return this.docService.currentFilter.text; }
 
-  // These variables bind to the input fields via [(ngModel)]
   typeInput: string = '';
   formatInput: string = '';
 
   constructor(private docService: DocumentService, private router: Router, private cdr: ChangeDetectorRef) {}
 
   ngOnInit() {
-    // Restore the inputs from the service (optional, so the boxes stay filled)
+    
     if (this.docService.currentFilter.by === 'type') this.typeInput = this.docService.currentFilter.value;
     if (this.docService.currentFilter.by === 'format') this.formatInput = this.docService.currentFilter.value;
 
-    // Load using the saved state
     this.loadDocuments(this.docService.currentFilter.by, this.docService.currentFilter.value);
   }
 
@@ -55,7 +53,7 @@ export class ListDocumentsComponent implements OnInit {
     if (confirm("Are you sure?")) {
       this.docService.deleteDocument(id).subscribe(() => {
         // Refresh the current view
-        this.loadDocuments('all'); 
+        this.loadDocuments(this.docService.currentFilter.by, this.docService.currentFilter.value); 
       });
     }
   }
