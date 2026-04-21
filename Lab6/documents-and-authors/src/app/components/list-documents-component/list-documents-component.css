@@ -1,0 +1,16 @@
+.container{
+  margin: 20px;
+  padding: 20px;
+  border: 2px solid black;
+  border-radius: 10px;
+}
+
+.form-container{
+  margin-bottom: 10px;
+}
+
+.tbl th, td{
+  border-style: solid;
+  border-width: 1px;
+  border-color: black;
+}

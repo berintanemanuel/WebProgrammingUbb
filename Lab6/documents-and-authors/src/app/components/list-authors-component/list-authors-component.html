@@ -1,0 +1,21 @@
+<h1>Authors</h1>
+<table class="tbl" id="authors-table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Add Document</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let author of authors;">
+      <td>{{author.id}}</td>
+      <td>{{author.name}}</td>
+      <td>{{author.email}}</td>
+      <td><button [routerLink]="['/add-document-component', author.id]">Add Document</button></td>
+    </tr>
+  </tbody>
+</table>
+
+<button id="go-home-btn" routerLink="/">Home</button>

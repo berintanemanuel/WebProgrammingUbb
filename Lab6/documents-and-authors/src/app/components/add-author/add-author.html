@@ -1,0 +1,30 @@
+<div class="container">
+  <h1>Add an author</h1>
+
+  <form [formGroup]="authorForm" (ngSubmit)="onSubmit()">
+    <div class="form-container">
+      <label for="name">Name</label><br>
+      <input type="text" id="name" formControlName="name" required>
+      <div *ngIf="authorForm.get('name')?.touched && authorForm.get('name')?.invalid">
+        <small *ngIf="authorForm.get('name')?.errors?.['required']">
+          Name is required
+        </small>
+      </div>
+    </div>
+
+    <div class="form-container">
+      <label for="email">Email</label><br>
+      <input type="text" id="email" formControlName="email" required>
+      <div *ngIf="authorForm.get('email')?.touched && authorForm.get('email')?.invalid">
+        <small *ngIf="authorForm.get('email')?.errors?.['required']">
+          Email is required
+        </small>
+      </div>
+    </div>
+
+    <div class="form-submit-container">
+      <a routerLink="/">Cancel</a>
+      <button type="submit">Save</button>
+    </div>
+  </form>
+</div>
