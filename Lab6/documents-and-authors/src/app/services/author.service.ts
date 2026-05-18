@@ -2,14 +2,15 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Author } from '../components/list-authors-component/list-authors-component';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthorService {
 
-  private baseUrl = 'http://localhost/src/controllers/author_controller.php';
-
+  private baseUrl = environment.apiAuthorUrl;
+  
   constructor(private http: HttpClient) {}
 
   getAllAuthors(): Observable<Author[]> {

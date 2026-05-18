@@ -1,7 +1,7 @@
 <?php
 class Database{
   private $host = "localhost";
-  private $db_name = "lab5web";
+  private $db_name = "lab8web";
   private $user = "root";
   private $password = "";
   private $conn;
