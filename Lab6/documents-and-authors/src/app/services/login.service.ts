@@ -1,6 +1,7 @@
 import { HttpClient, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { environment } from "../../environments/environment";
+import { API } from "../../constants/api";
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class LoginService{
 
   login(username: string, password: string) {
     return this.http.post<any>(
-      environment.apiLoginUrl,
+      API.login,
       {
         username,
         password
@@ -23,7 +24,7 @@ export class LoginService{
   }
   register(username: string, password: string) {
     return this.http.post<any>(
-      environment.apiRegisterUrl,
+      API.register,
       {
         username,
         password

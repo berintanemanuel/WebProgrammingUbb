@@ -14,65 +14,151 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
 
 require_once "../db.php";
 
-$data = json_decode(file_get_contents("php://input"));
+function login(){
+  $data = json_decode(file_get_contents("php://input"));
 
-if (!$data) {
-    http_response_code(400);
+  if (!$data) {
+      http_response_code(400);
 
-    echo json_encode([
-        "message" => "Invalid request"
-    ]);
+      echo json_encode([
+          "message" => "Invalid request"
+      ]);
 
-    exit;
+      exit;
+  }
+
+  $username = trim($data->username);
+  $password = trim($data->password);
+
+  try {
+
+      $database = new Database();
+
+      $conn = $database->getConnection();
+
+      $stmt = $conn->prepare(
+          "SELECT * FROM users
+          WHERE username = :username
+          AND password = :password"
+      );
+
+      $stmt->bindParam(":username", $username);
+
+      $stmt->bindParam(":password", $password);
+
+      $stmt->execute();
+
+      $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+      if ($user) {
+
+          // fake/simple token
+          $token = base64_encode($username . ":" . time());
+
+          echo json_encode([
+              "token" => $token
+          ]);
+
+      } else {
+
+          http_response_code(401);
+
+          echo json_encode([
+              "message" => "Invalid credentials"
+          ]);
+      }
+
+  } catch(PDOException $e) {
+
+      http_response_code(500);
+
+      echo json_encode([
+          "message" => $e->getMessage()
+      ]);
+  }
 }
 
-$username = trim($data->username);
-$password = trim($data->password);
+function register(){
+  $data = json_decode(file_get_contents("php://input"));
 
-try {
+  if (!$data) {
 
-    $database = new Database();
+      http_response_code(400);
 
-    $conn = $database->getConnection();
+      echo json_encode([
+          "message" => "Invalid request"
+      ]);
 
-    $stmt = $conn->prepare(
-        "SELECT * FROM users
-         WHERE username = :username
-         AND password = :password"
-    );
+      exit;
+  }
 
-    $stmt->bindParam(":username", $username);
+  $username = trim($data->username);
+  $password = trim($data->password);
 
-    $stmt->bindParam(":password", $password);
+  try {
 
-    $stmt->execute();
+      $database = new Database();
 
-    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+      $conn = $database->getConnection();
 
-    if ($user) {
+      // Check existing username
+      $checkStmt = $conn->prepare(
+          "SELECT COUNT(*) FROM users
+          WHERE username = :username"
+      );
 
-        // fake/simple token
-        $token = base64_encode($username . ":" . time());
+      $checkStmt->bindParam(
+          ":username",
+          $username);
 
-        echo json_encode([
-            "token" => $token
-        ]);
+      $checkStmt->execute();
 
-    } else {
+      if ($checkStmt->fetchColumn() > 0) {
 
-        http_response_code(401);
+          http_response_code(400);
 
-        echo json_encode([
-            "message" => "Invalid credentials"
-        ]);
-    }
+          echo json_encode([
+              "message" => "Username already exists"
+          ]);
 
-} catch(PDOException $e) {
+          exit;
+      }
 
-    http_response_code(500);
+      // Insert new user
+      $stmt = $conn->prepare(
+          "INSERT INTO users(username, password)
+          VALUES(:username, :password)"
+      );
 
-    echo json_encode([
-        "message" => $e->getMessage()
-    ]);
+      $stmt->bindParam(
+          ":username",
+          $username);
+
+      $stmt->bindParam(
+          ":password",
+          $password);
+
+      $stmt->execute();
+
+      echo json_encode([
+          "message" => "User registered successfully"
+      ]);
+
+  } catch(PDOException $e) {
+
+      http_response_code(500);
+
+      echo json_encode([
+          "message" => $e->getMessage()
+      ]);
+  }
+}
+
+if ($_GET['action'] == 'login') {
+    login();
+}
+
+if ($_GET['action'] == 'register') {
+    register();
 }
 ?>
