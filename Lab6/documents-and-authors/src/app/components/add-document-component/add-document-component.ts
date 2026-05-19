@@ -23,7 +23,7 @@ export interface Document {
 export class AddDocumentComponent {
   documentForm = new FormGroup({
     title: new FormControl('', [Validators.required]),
-    nopages: new FormControl(0, [Validators.required]),
+    number_of_pages: new FormControl(0, [Validators.required]),
     type: new FormControl('', [Validators.required]),
     format: new FormControl('', [Validators.required])
   })

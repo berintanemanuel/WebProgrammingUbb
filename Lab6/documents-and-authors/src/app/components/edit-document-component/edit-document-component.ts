@@ -14,7 +14,7 @@ import { DocumentService } from '../../services/document.service';
 export class EditDocumentComponent {
   documentForm = new FormGroup({
     title: new FormControl('', [Validators.required]),
-    nopages: new FormControl(0, [Validators.required]),
+    number_of_pages: new FormControl(0, [Validators.required]),
     type: new FormControl('', [Validators.required]),
     format: new FormControl('', [Validators.required])
   })
@@ -42,7 +42,7 @@ export class EditDocumentComponent {
       next: (response) => {
         this.documentForm.patchValue({
           title: response.title,
-          nopages: response.number_of_pages,
+          number_of_pages: response.number_of_pages,
           type: response.type,
           format: response.format
         });

@@ -124,7 +124,7 @@ function editDocument($id, $doc){
 
       $stmt = $conn->prepare("UPDATE documents SET title = :title, number_of_pages = :nopages, type = :type, format = :format WHERE id = :id");
       $stmt->bindParam(":title", $doc->{"title"});
-      $stmt->bindParam(":nopages", $doc->{"nopages"});
+      $stmt->bindParam(":nopages", $doc->{"number_of_pages"});
       $stmt->bindParam(":type", $doc->{"type"});
       $stmt->bindParam(":format", $doc->{"format"});
       $stmt->bindParam(":id", $id, PDO::PARAM_INT);
@@ -163,7 +163,7 @@ if(isset($_POST["action"]) && $_POST["action"] == 'addDocument'){
   $document = json_decode($_POST["document"]);
 
   $title = trim($document->{'title'});
-  $nopages = (int)$document->{'nopages'};
+  $nopages = (int)$document->{'number_of_pages'};
   $type = trim($document->{'type'});
   $format = trim($document->{'format'});
   $author_id = (int)$document->{'author_id'};
@@ -208,7 +208,7 @@ if(isset($_POST["action"]) && $_POST["action"] == 'editDocument'){
   $document = json_decode($_POST["document"]);
 
   $title = trim($document->{'title'});
-  $nopages = (int)$document->{'nopages'};
+  $nopages = (int)$document->{'number_of_pages'};
   $type = trim($document->{'type'});
   $format = trim($document->{'format'});
 

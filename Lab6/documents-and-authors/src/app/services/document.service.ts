@@ -2,12 +2,13 @@ import { HttpClient, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import {Document} from "../components/add-document-component/add-document-component"
+import { environment } from "../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
 })
 export class DocumentService{
-  private baseUrl = 'http://localhost/src/controllers/document_controller.php';
+  private baseUrl = environment.apiDocumentUrl;
 
   currentFilter = {
     by: 'all',
