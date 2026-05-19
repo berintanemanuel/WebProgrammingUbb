@@ -21,4 +21,13 @@ export class LoginService{
   logout() {
     localStorage.removeItem('token');
   }
+  register(username: string, password: string) {
+    return this.http.post<any>(
+      environment.apiRegisterUrl,
+      {
+        username,
+        password
+      }
+    );
+  }
 }

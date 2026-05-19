@@ -7,6 +7,7 @@ import { ListDocumentsComponent } from './components/list-documents-component/li
 import { EditDocumentComponent } from './components/edit-document-component/edit-document-component';
 import { LoginComponent } from './components/login-component/login-component';
 import { authGuard } from './guards/auth-guard';
+import { RegisterComponent } from './components/register-component/register-component';
 export const routes: Routes = [
   { path: '', component: HomeComponent, canActivate: [authGuard] },
   {path: 'add-author', component: AddAuthorComponent, canActivate: [authGuard]},
@@ -14,5 +15,6 @@ export const routes: Routes = [
   {path: 'add-document-component/:authorId', component: AddDocumentComponent, canActivate: [authGuard]},
   {path: 'list-documents-component', component: ListDocumentsComponent, canActivate: [authGuard]},
   {path: 'edit-document-component/:documentId', component: EditDocumentComponent, canActivate: [authGuard]},
-  {path: 'login', component: LoginComponent}
+  {path: 'login', component: LoginComponent},
+  {path: 'register', component: RegisterComponent}
 ];

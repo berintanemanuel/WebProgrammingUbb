@@ -6,7 +6,7 @@ import {
   Validators
 } from '@angular/forms';
 
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
 import { LoginService } from '../../services/login.service';
@@ -14,7 +14,7 @@ import { LoginService } from '../../services/login.service';
 @Component({
   selector: 'app-login-component',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [ReactiveFormsModule, CommonModule, RouterLink],
   templateUrl: './login-component.html'
 })
 export class LoginComponent {
