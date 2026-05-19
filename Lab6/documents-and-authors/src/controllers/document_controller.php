@@ -8,6 +8,24 @@ header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
 // 3. Allow specific headers (Angular sends 'Content-Type' for POSTs)
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
+if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
+    http_response_code(200);
+    exit;
+}
+
+$headers = getallheaders();
+
+if (!isset($headers['Authorization'])) {
+
+    http_response_code(401);
+
+    echo json_encode([
+        "message" => "Unauthorized"
+    ]);
+
+    exit;
+}
+
 // 4. Handle "Preflight" requests
 // Browsers send an OPTIONS request before a POST to check permissions
 if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
